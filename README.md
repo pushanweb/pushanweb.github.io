@@ -19,13 +19,13 @@
 - **Misc:** Git, WordPress
 
 ## Projects
-- [Modern OpenGL based City Quest Game](https://github.com/pushanweb/City-Quest-Game) (Sep, 23-Dec, 23)
-- [AI game using Min-Max and Alpha-Beta Pruning algorithms](https://github.com/pushanweb/Cap-the-cells) (Mar, 23-Sep, 23)
-- [Android Cardiac Recorder](https://github.com/pushanweb/CardiacRecorder) (Sep, 22-Feb, 23)
-- [RFID and Keypad Based Door Lock Using Arduino](https://github.com/pushanweb/RFID-and-Keypad-Based-Door-Lock-Using-Arduino) (Mar, 22-Aug, 22)
-- [University Database Management System](https://github.com/pushanweb/UniversityDatabase) (Mar, 22-Aug, 22)
-- [ASP.NET based Supermarket Management System](https://github.com/pushanweb/Supermarket-Management) (Mar, 22-Aug, 22)
-- [Android Vehicle Tracking Application](https://github.com/pushanweb/MyVehiclesApp) (Aug, 21-Feb, 22)
+- [Modern OpenGL based City Quest Game](https://github.com/pushanweb/City-Quest-Game)
+- [AI game using Min-Max and Alpha-Beta Pruning algorithms](https://github.com/pushanweb/Cap-the-cells)
+- [Android Cardiac Recorder](https://github.com/pushanweb/CardiacRecorder)
+- [RFID and Keypad Based Door Lock Using Arduino](https://github.com/pushanweb/RFID-and-Keypad-Based-Door-Lock-Using-Arduino)
+- [University Database Management System](https://github.com/pushanweb/UniversityDatabase)
+- [ASP.NET based Supermarket Management System](https://github.com/pushanweb/Supermarket-Management) 
+- [Android Vehicle Tracking Application](https://github.com/pushanweb/MyVehiclesApp)
 
 ## Competitive Programming Experiences
 - **Codeforces:** [pushanweb](https://codeforces.com/profile/pushanweb) (Max Rating: 1011)
