@@ -1,5 +1,3 @@
-# Pushan Paul's Portfolio
-
 ## Personal Information
 - **Name:** Pushan Paul
 - **Phone:** +880-1521-528-554
