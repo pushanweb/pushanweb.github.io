@@ -2,7 +2,8 @@
 - **Name:** Pushan Paul
 - **Phone:** +880-1521-528-554
 - **Email:** pushanweb@gmail.com
-- **GitHub:** [pushanweb](https://github.com/pushanweb)
+- **LinkedIn:** [pushanweb](https://www.linkedin.com/in/pushanweb/)
+- **Facebook:** [Pushan Paul](https://www.facebook.com/profile.php?id=100066383753059)
 
 ## Education
 - **BSc. in Computer Science and Engineering (CGPA: 3.61/4.0)**
