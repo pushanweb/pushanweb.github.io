@@ -1,3 +1,13 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRZH3GMPT9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GRZH3GMPT9');
+</script>
+
 ## Personal Information
 - **Name:** Pushan Paul
 - **Phone:** +880-1521-528-554
