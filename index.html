@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushan Paul - Software Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #000010;
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+
+        [lang="ja"] body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* Hide elements by default */
+        [data-lang="ja"], [data-lang="en"] {
+            display: none;
+        }
+        
+        /* Background Gradient & Glow Effect */
+        .main-container::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 88, 202, 0.2), transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(127, 0, 255, 0.2), transparent 40%);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.2);
+            border-color: rgba(0, 191, 255, 0.3);
+        }
+
+        /* Scroll-based Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000010; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 191, 255, 0.5); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 191, 255, 0.8); }
+
+        /* Language Toggle */
+        .lang-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .lang-switch input { display: none; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "EN";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #00BFFF;
+            transition: .4s;
+            border-radius: 50%;
+            color: #111;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input:checked + .slider {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            content: "JP";
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="main-container">
+        <!-- Header -->
+        <header class="fixed w-full p-4 z-50">
+            <nav class="container mx-auto flex justify-between items-center glass-card rounded-full px-6 py-3">
+                <a href="#" class="text-xl font-bold text-white">Pushan Paul</a>
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex items-center space-x-6 text-sm">
+                        <a href="#about" class="hover:text-cyan-400 transition-colors" data-lang="en">About</a>
+                        <a href="#about" class="hover:text-cyan-400 transition-colors" data-lang="ja">自己紹介</a>
+                        <a href="#skills" class="hover:text-cyan-400 transition-colors" data-lang="en">Skills</a>
+                        <a href="#skills" class="hover:text-cyan-400 transition-colors" data-lang="ja">スキル</a>
+                        <a href="#experience" class="hover:text-cyan-400 transition-colors" data-lang="en">Experience</a>
+                        <a href="#experience" class="hover:text-cyan-400 transition-colors" data-lang="ja">経歴</a>
+                        <a href="#projects" class="hover:text-cyan-400 transition-colors" data-lang="en">Projects</a>
+                        <a href="#projects" class="hover:text-cyan-400 transition-colors" data-lang="ja">プロジェクト</a>
+                    </div>
+                    <label class="lang-switch">
+                        <input type="checkbox" id="language-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container mx-auto px-6 pt-32 pb-16">
+            <!-- Hero Section -->
+            <section id="hero" class="text-center h-[70vh] flex flex-col justify-center items-center reveal">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white" data-lang="en">
+                    Innovate. Code. <span class="text-cyan-400">Deploy.</span>
+                </h1>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white" data-lang="ja">
+                    革新。コード。<span class="text-cyan-400">展開。</span>
+                </h1>
+                <p class="mt-6 max-w-2xl text-lg text-gray-300" data-lang="en">
+                    A software engineer building robust and scalable applications with a focus on clean code and user-centric design.
+                </p>
+                <p class="mt-6 max-w-2xl text-lg text-gray-300" data-lang="ja">
+                    クリーンなコードとユーザー中心の設計に重点を置き、堅牢でスケーラブルなアプリケーションを構築するソフトウェアエンジニア。
+                </p>
+                <a href="#contact" class="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105" data-lang="en">Get in Touch</a>
+                <a href="#contact" class="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105" data-lang="ja">お問い合わせ</a>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-16 reveal">
+                 <div class="glass-card rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
+                    <img src="https://placehold.co/250x250/00BFFF/000010?text=PP" alt="Pushan Paul" class="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover border-4 border-cyan-500/50 flex-shrink-0">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl font-bold mb-4" data-lang="en">About Me</h2>
+                        <h2 class="text-3xl font-bold mb-4" data-lang="ja">自己紹介</h2>
+                        <p class="text-gray-300" data-lang="en">I'm a dedicated software engineer with a passion for crafting elegant solutions to complex problems. My expertise lies in front-end development with Angular and back-end systems with Java Spring Boot. I thrive in collaborative environments and am always excited to learn new technologies and grow as a developer. My current research interest is understanding the effect of Social Media posts on Bitcoin prices.</p>
+                        <p class="text-gray-300" data-lang="ja">私は、複雑な問題に対してエレガントなソリューションを作り上げることに情熱を注ぐ、献身的なソフトウェアエンジニアです。私の専門はAngularによるフロントエンド開発とJava Spring Bootによるバックエンドシステムです。協調的な環境で能力を発揮し、常に新しい技術を学び、開発者として成長することに意欲的です。現在の研究関心は、ソーシャルメディアの投稿がビットコイン価格に与える影響を理解することです。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-16 reveal">
+                <h2 class="text-3xl font-bold text-center mb-6" data-lang="en">Core Technologies</h2>
+                <h2 class="text-3xl font-bold text-center mb-6" data-lang="ja">コア技術</h2>
+                <div class="flex justify-center gap-8 mb-16">
+                    <div class="glass-card rounded-xl p-6 text-center w-48">
+                        <i class="fab fa-angular fa-3x mb-3 text-cyan-400"></i>
+                        <p class="font-bold">Angular</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 text-center w-48">
+                        <i class="fas fa-leaf fa-3x mb-3 text-cyan-400"></i>
+                        <p class="font-bold">Java Spring Boot</p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">Additional Skills</h2>
+                <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">その他のスキル</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-c fa-2x mb-2 text-cyan-400"></i><p>C (Expert)</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-plus-minus fa-2x mb-2 text-cyan-400"></i><p>C++ (Expert)</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-python fa-2x mb-2 text-cyan-400"></i><p>Python</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-java fa-2x mb-2 text-cyan-400"></i><p>Java</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-swift fa-2x mb-2 text-cyan-400"></i><p>Swift</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-database fa-2x mb-2 text-cyan-400"></i><p>MySQL</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-android fa-2x mb-2 text-cyan-400"></i><p>Android SDK</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-laptop-code fa-2x mb-2 text-cyan-400"></i><p>ASP.NET</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-cubes fa-2x mb-2 text-cyan-400"></i><p>OpenGL</p></div>
+                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-git-alt fa-2x mb-2 text-cyan-400"></i><p>Git</p></div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="py-16 reveal">
+                <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">My Journey</h2>
+                <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">私の歩み</h2>
+                <div class="max-w-3xl mx-auto relative">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-4 md:left-1/2 w-0.5 h-full bg-cyan-900"></div>
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <div class="relative pl-12 md:pl-0 md:flex md:justify-end md:w-1/2 md:pr-12">
+                            <div class="absolute left-4 md:left-auto md:right-0 md:translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-briefcase"></i></div>
+                            <div class="glass-card p-6 rounded-lg">
+                                <p class="text-sm text-cyan-400">Apr 2025 - Present</p>
+                                <h3 class="font-bold" data-lang="en">Software Engineer · Mass Holdings</h3>
+                                <h3 class="font-bold" data-lang="ja">ソフトウェアエンジニア · Mass Holdings</h3>
+                            </div>
+                        </div>
+                        <div class="relative pl-12 md:pl-0 md:flex md:w-1/2 md:ml-auto md:pl-12">
+                             <div class="absolute left-4 md:left-0 md:-translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="glass-card p-6 rounded-lg">
+                                <p class="text-sm text-cyan-400">2024</p>
+                                <h3 class="font-bold" data-lang="en">BSc. in CSE · Khulna University of Engineering & Technology</h3>
+                                <h3 class="font-bold" data-lang="ja">コンピューターサイエンスと工学の理学士 · クルナ工科大学</h3>
+                            </div>
+                        </div>
+                         <div class="relative pl-12 md:pl-0 md:flex md:justify-end md:w-1/2 md:pr-12">
+                            <div class="absolute left-4 md:left-auto md:right-0 md:translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-school"></i></div>
+                            <div class="glass-card p-6 rounded-lg">
+                                <p class="text-sm text-cyan-400">2018</p>
+                                <h3 class="font-bold" data-lang="en">H.S.C. Science · Notre Dame College</h3>
+                                <h3 class="font-bold" data-lang="ja">高等中等教育証明書 · ノートルダム大学</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-16 reveal">
+                 <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">Featured Projects</h2>
+                 <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">注目のプロジェクト</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="https://github.com/pushanweb/City-Quest-Game" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">City Quest Game</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">シティクエストゲーム</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">A modern 3D game built with OpenGL 3.3.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">OpenGL 3.3で構築されたモダンな3Dゲーム。</p>
+                    </a>
+                     <a href="https://github.com/pushanweb/Cap-the-cells" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">AI Game Engine</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">AIゲームエンジン</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">An AI game using Min-Max and Alpha-Beta Pruning algorithms.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">ミニマックス法とアルファベータ法を用いたAIゲーム。</p>
+                    </a>
+                    <a href="https://github.com/pushanweb/CardiacRecorder" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Android Cardiac Recorder</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Android心臓記録装置</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">An Android app for recording and monitoring cardiac activity.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">心臓活動を記録・監視するためのAndroidアプリ。</p>
+                    </a>
+                    <a href="https://github.com/pushanweb/RFID-and-Keypad-Based-Door-Lock-Using-Arduino" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Arduino RFID Door Lock</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Arduino RFIDドアロック</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">A secure door lock system using RFID and a keypad with Arduino.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">Arduinoを使用したRFIDとキーパッドによる安全なドアロックシステム。</p>
+                    </a>
+                    <a href="https://github.com/pushanweb/UniversityDatabase" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">University Database System</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">大学データベースシステム</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">A database management system for university records.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">大学の記録を管理するためのデータベース管理システム。</p>
+                    </a>
+                    <a href="https://github.com/pushanweb/Supermarket-Management" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">ASP.NET Supermarket System</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">ASP.NETスーパーマーケットシステム</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">A management system for supermarkets built with ASP.NET.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">ASP.NETで構築されたスーパーマーケット管理システム。</p>
+                    </a>
+                    <a href="https://github.com/pushanweb/MyVehiclesApp" target="_blank" class="glass-card rounded-xl p-6">
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Android Vehicle Tracking App</h3>
+                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Android車両追跡アプリ</h3>
+                        <p class="text-sm text-gray-300" data-lang="en">A vehicle tracking application for Android devices.</p>
+                        <p class="text-sm text-gray-300" data-lang="ja">Androidデバイス用の車両追跡アプリケーション。</p>
+                    </a>
+                 </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-16 text-center reveal">
+                <h2 class="text-3xl font-bold mb-4" data-lang="en">Let's Build Together</h2>
+                <h2 class="text-3xl font-bold mb-4" data-lang="ja">一緒に作りましょう</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-lang="en">Open to new projects and collaborations. Let's connect!</p>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-lang="ja">新しいプロジェクトやコラボレーションを歓迎します。繋がりましょう！</p>
+                <a href="mailto:pushanweb@gmail.com" class="inline-block bg-cyan-500 text-black font-bold py-3 px-8 rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105">
+                    pushanweb@gmail.com
+                </a>
+                 <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://github.com/pushanweb" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/pushanweb/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100066383753059" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language Toggle
+            const langToggle = document.getElementById('language-toggle');
+            const elements = document.querySelectorAll('[data-lang]');
+            const html = document.documentElement;
+
+            const setLanguage = (lang) => {
+                html.lang = lang;
+                elements.forEach(el => {
+                    const displayStyle = (el.tagName === 'A' && el.parentElement.classList.contains('text-sm')) || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' ? 'block' : 'inline-block';
+                    el.style.display = el.dataset.lang === lang ? displayStyle : 'none';
+                });
+            };
+
+            langToggle.addEventListener('change', (event) => {
+                setLanguage(event.target.checked ? 'ja' : 'en');
+            });
+            setLanguage('en');
+
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
