@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushan Paul - Software Engineer Resume</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* CSS resets & Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.5;
+            padding: 3rem 1rem;
+        }
+
+        /* Printable Sheet Layout */
+        .sheet {
+            max-width: 820px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        /* Print Header bar */
+        .print-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #374151;
+        }
+        .print-header-title {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .print-btn {
+            background: linear-gradient(135deg, #00cc88, #009966);
+            color: #ffffff;
+            border: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 204, 136, 0.3);
+            transition: all 0.2s;
+        }
+        .print-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(0, 204, 136, 0.5);
+        }
+
+        /* Resume Content Formatting */
+        .header-section {
+            text-align: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .name {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.25rem;
+        }
+        .title-tag {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #00cc88;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.25rem;
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            color: #4b5563;
+        }
+        .contact-item a {
+            color: #00cc88;
+            text-decoration: none;
+        }
+        .contact-item i {
+            color: #00cc88;
+        }
+
+        .summary {
+            font-size: 0.95rem;
+            color: #374151;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        /* Section Layout */
+        .cv-section {
+            margin-bottom: 2rem;
+        }
+        .section-heading {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #111827;
+            border-bottom: 2px solid #111827;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-heading i {
+            color: #00cc88;
+        }
+
+        /* Skills block */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .skill-group {
+            font-size: 0.9rem;
+        }
+        .skill-group-title {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.4rem;
+        }
+        .skill-list {
+            color: #4b5563;
+        }
+
+        /* Experience Timeline */
+        .experience-item {
+            margin-bottom: 1.5rem;
+        }
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.4rem;
+        }
+        .role-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .company-name {
+            font-weight: 600;
+            color: #00cc88;
+        }
+        .duration {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4b5563;
+        }
+        .bullet-list {
+            list-style-type: square;
+            padding-left: 1.25rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .bullet-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Projects block */
+        .project-item {
+            margin-bottom: 1rem;
+        }
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+        .project-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #111827;
+            margin-bottom: 0.2rem;
+        }
+        .project-desc {
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        /* --- PRINT OVERRIDES (Critical) --- */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+            .sheet {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .section-heading i {
+                display: none;
+            }
+            .section-heading {
+                border-bottom-color: #000000;
+            }
+            .title-tag, .company-name, .contact-item i, .contact-item a {
+                color: #000000 !important;
+            }
+            a {
+                text-decoration: none;
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Printable Header bar (Hidden on Print) -->
+    <div class="print-header no-print">
+        <span class="print-header-title">Pushan Paul - International Resume</span>
+        <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> Print / Save PDF
+        </button>
+    </div>
+
+    <!-- Main printable Sheet container -->
+    <div class="sheet">
+        
+        <!-- Header Profile Details -->
+        <header class="header-section">
+            <h1 class="name">Pushan Paul</h1>
+            <div class="title-tag">Software Engineer</div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:pushanweb@gmail.com">pushanweb@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tokyo, Japan</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/pushanweb" target="_blank">github.com/pushanweb</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/pushanweb/" target="_blank">linkedin.com/in/pushanweb</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="cv-section">
+            <p class="summary">
+                Dedicated and solution-oriented Software Engineer based in Tokyo, Japan, possessing strong experience in enterprise application design. Specializes in building modern, modular, and high-performance frontend interfaces using **Angular**, combined with developing robust, highly secure, and optimized microservices and RESTful API structures using **Java Spring Boot**. Demonstrates strong technical adaptability, algorithmic foundation, and high academic excellence as a former CSE Lecturer. Equipped with business-level professional collaboration skills and bilingual adaptability.
+            </p>
+        </section>
+
+        <!-- Core Technologies / Skills -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-code"></i> Technical Competencies</h2>
+            <div class="skills-container">
+                <div class="skill-group">
+                    <div class="skill-group-title">Primary Stack (Web & Enterprise)</div>
+                    <div class="skill-list">Angular, Spring Boot, Java, JavaScript (ES6+), MySQL, Relational Database Systems, HTML5, CSS3, Git / GitHub</div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">Additional Languages & Core SDKs</div>
+                    <div class="skill-list">C, C++, Python, Swift (iOS), Android SDK, ASP.NET (C# Core), OpenGL (3D graphics rendering)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            
+            <!-- MASS Holdings -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">Software Engineer · <span class="company-name">MASS Holdings Ltd.</span></span>
+                    <span class="duration">Apr 2025 - Present</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Design, code, and optimize high-availability enterprise web architectures in Tokyo.</li>
+                    <li>Utilize Angular framework to construct modular, responsive, and performance-tuned client views.</li>
+                    <li>Implement stable, clean Java RESTful APIs and secure data channels with SQL database backends.</li>
+                    <li>Participate in agile collaborative cycles, code-review processes, and direct customer alignment.</li>
+                </ul>
+            </div>
+
+            <!-- East Delta University -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">Lecturer in CSE · <span class="company-name">East Delta University</span></span>
+                    <span class="duration">Dec 2024 - Mar 2025</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Instructed and designed course frameworks for undergraduate level Computer Science & Engineering.</li>
+                    <li>Delivered lectures in core algorithms, advanced data structures, and Object-Oriented Programming (OOP) paradigms.</li>
+                    <li>Mentored senior student development teams on engineering graduation projects.</li>
+                </ul>
+            </div>
+
+            <!-- B-JET -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">Trainee · <span class="company-name">B-JET Program</span></span>
+                    <span class="duration">Jun 2024 - Dec 2024</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Completed intensive Japanese language and business culture training focused on software communication standards.</li>
+                    <li>Successfully adjusted development coordination models to fit local Japanese corporate project standards.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Academic Projects -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-project-diagram"></i> Key Project Highlights</h2>
+            
+            <div class="project-item">
+                <div class="project-title">City Quest 3D Game Engine (OpenGL 3.3, C++)</div>
+                <div class="project-desc">Designed and compiled a native 3D exploration simulator mapping geometric assets, dynamic rendering cameras, and lighting buffers completely in OpenGL and C++.</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">Adversarial Decision Game Engine (Python / Java)</div>
+                <div class="project-desc">Programmed an adversarial game tree evaluator using Min-Max and optimized Alpha-Beta Pruning algorithms to model recursive decision actions in real-time.</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">Android Cardiac Activity Monitor (Android SDK, Java)</div>
+                <div class="project-desc">Built a mobile clinical recorder recording daily patient cardiac vital indicators, rendering statistics plots, and tracking anomalies.</div>
+            </div>
+        </section>
+
+        <!-- Education Credentials -->
+        <section class="cv-section" style="margin-bottom: 0;">
+            <h2 class="section-heading"><i class="fas fa-graduation-cap"></i> Education</h2>
+            
+            <div class="experience-item" style="margin-bottom: 0.75rem;">
+                <div class="experience-header">
+                    <span class="role-title">BSc. in Computer Science & Engineering</span>
+                    <span class="duration">Graduated 2024</span>
+                </div>
+                <div style="font-size: 0.9rem; color: #4b5563; font-weight: 500;">
+                    Khulna University of Engineering & Technology (KUET)
+                </div>
+            </div>
+
+            <div class="experience-item" style="margin-bottom: 0;">
+                <div class="experience-header">
+                    <span class="role-title">H.S.C. Science (Higher Secondary Certificate)</span>
+                    <span class="duration">Completed 2018</span>
+                </div>
+                <div style="font-size: 0.9rem; color: #4b5563; font-weight: 500;">
+                    Notre Dame College
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

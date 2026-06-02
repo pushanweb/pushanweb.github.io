@@ -1,377 +1,521 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pushan Paul - Software Engineer</title>
+    <meta name="description" content="Professional Portfolio of Pushan Paul - Full-Stack Software Engineer specializing in Angular, Spring Boot, and Enterprise Solutions based in Tokyo, Japan.">
+    <meta name="keywords" content="Pushan Paul, Software Engineer, Full Stack, Angular, Spring Boot, Java, Tokyo, Portfolio, Developer, B-JET, KUET">
+    <meta name="author" content="Pushan Paul">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:title" content="Pushan Paul | Software Engineer">
+    <meta property="og:description" content="Explore the portfolio of Pushan Paul, an enterprise full-stack engineer in Tokyo delivering premium Angular & Spring Boot web applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pushanweb.github.io">
     
-    <!-- Google Fonts: Manrope -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pushan Paul | Software Engineer</title>
     
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: #000010;
-            color: #E0E0E0;
-            overflow-x: hidden;
-        }
-
-        [lang="ja"] body {
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-
-        /* Hide elements by default */
-        [data-lang="ja"], [data-lang="en"] {
-            display: none;
-        }
-        
-        /* Background Gradient & Glow Effect */
-        .main-container::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(10, 88, 202, 0.2), transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(127, 0, 255, 0.2), transparent 40%);
-            z-index: -1;
-        }
-
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 191, 255, 0.2);
-            border-color: rgba(0, 191, 255, 0.3);
-        }
-
-        /* Scroll-based Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000010; }
-        ::-webkit-scrollbar-thumb { background: rgba(0, 191, 255, 0.5); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 191, 255, 0.8); }
-
-        /* Language Toggle */
-        .lang-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .lang-switch input { display: none; }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "EN";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: #00BFFF;
-            transition: .4s;
-            border-radius: 50%;
-            color: #111;
-            font-size: 10px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        input:checked + .slider {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-            content: "JP";
-        }
-    </style>
+    <!-- CSS Styling Sheets -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Core JS Logic -->
+    <script src="script.js" defer></script>
 </head>
-<body class="antialiased">
-    <div class="main-container">
-        <!-- Header -->
-        <header class="fixed w-full p-4 z-50">
-            <nav class="container mx-auto flex justify-between items-center glass-card rounded-full px-6 py-3">
-                <a href="#hero" class="text-xl font-bold text-white">Pushan Paul</a>
-                <div class="flex items-center space-x-6">
-                    <div class="hidden md:flex items-center space-x-6 text-sm">
-                        <a href="#about" class="hover:text-cyan-400 transition-colors" data-lang="en">About</a>
-                        <a href="#about" class="hover:text-cyan-400 transition-colors" data-lang="ja">自己紹介</a>
-                        <a href="#skills" class="hover:text-cyan-400 transition-colors" data-lang="en">Skills</a>
-                        <a href="#skills" class="hover:text-cyan-400 transition-colors" data-lang="ja">スキル</a>
-                        <a href="#experience" class="hover:text-cyan-400 transition-colors" data-lang="en">Experience</a>
-                        <a href="#experience" class="hover:text-cyan-400 transition-colors" data-lang="ja">経歴</a>
-                        <a href="#projects" class="hover:text-cyan-400 transition-colors" data-lang="en">Projects</a>
-                        <a href="#projects" class="hover:text-cyan-400 transition-colors" data-lang="ja">プロジェクト</a>
-                    </div>
+<body>
+
+    <!-- Interactive Canvas Background & Ambient Glow Orbs -->
+    <canvas id="canvas-bg"></canvas>
+    <div class="glow-orb glow-orb-cyan"></div>
+    <div class="glow-orb glow-orb-purple"></div>
+
+    <!-- Sticky Navigation Header -->
+    <header id="header">
+        <nav class="nav-container container">
+            <a href="#home" class="logo">
+                Pushan Paul<span>.</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav-about">About</a></li>
+                <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+                <li><a href="#experience" data-i18n="nav-experience">Journey</a></li>
+                <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+                <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+                
+                <li class="lang-toggle-wrapper">
+                    <span id="label-en" class="lang-toggle-label active">EN</span>
                     <label class="lang-switch">
                         <input type="checkbox" id="language-toggle">
                         <span class="slider"></span>
                     </label>
-                </div>
-            </nav>
-        </header>
+                    <span id="label-ja" class="lang-toggle-label">JP</span>
+                </li>
+            </ul>
 
-        <main class="container mx-auto px-6 pt-32 pb-16">
-            <!-- Hero Section -->
-            <section id="hero" class="text-center h-[80vh] flex flex-col justify-center items-center reveal">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white" data-lang="en">Pushan Paul</h1>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white" data-lang="ja">プシャン・ポール</h1>
+            <button class="menu-btn" aria-label="Toggle Menu">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="main">
+        
+        <!-- Home / Hero Section -->
+        <section class="home section" id="home">
+            <div class="home-grid grid container">
                 
-                <p class="mt-4 text-xl md:text-2xl text-cyan-400 font-medium" data-lang="en">
-                    Software Engineer at Mass Holdings
-                </p>
-                <p class="mt-4 text-xl md:text-2xl text-cyan-400 font-medium" data-lang="ja">
-                    MASSホールディングスのソフトウェアエンジニア
-                </p>
+                <div class="home-data">
+                    <span class="section__subtitle reveal" data-i18n="hero-subtitle">Engineered for Excellence</span>
+                    
+                    <h1 class="home-title reveal" style="transition-delay: 0.1s;">
+                        <span data-i18n="hero-title">Pushan Paul</span>
+                    </h1>
+                    
+                    <!-- Dynamic Typing Terminal Animation -->
+                    <div class="typing-container reveal" style="transition-delay: 0.2s;">
+                        <span class="typed-text"></span><span class="cursor"></span>
+                    </div>
+                    
+                    <p class="home-desc reveal" style="transition-delay: 0.3s;" data-i18n="hero-desc">
+                        A dedicated Software Engineer in Tokyo crafting enterprise-scale Angular & Spring Boot architectures. Bridging structural stability with cutting-edge user interfaces.
+                    </p>
+                    
+                    <div class="home-cta reveal" style="transition-delay: 0.4s;">
+                        <a href="#contact" class="btn btn-primary" data-i18n="hero-cta-contact">Get in Touch</a>
+                        <a href="#projects" class="btn btn-secondary" data-i18n="hero-cta-projects">Explore Work</a>
+                        <a href="cv-en.html" id="dynamic-cv-btn" target="_blank" class="btn btn-secondary cv-btn">
+                            <i class="ri-file-pdf-line"></i>
+                            <span data-i18n="cv-btn">CV</span>
+                        </a>
+                    </div>
+                    
+                    <div class="home-social reveal" style="transition-delay: 0.5s;">
+                        <a href="https://github.com/pushanweb" target="_blank" class="home-social-icon" aria-label="GitHub">
+                            <i class="ri-github-line"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pushanweb/" target="_blank" class="home-social-icon" aria-label="LinkedIn">
+                            <i class="ri-linkedin-box-line"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100066383753059" target="_blank" class="home-social-icon" aria-label="Facebook">
+                            <i class="ri-facebook-box-line"></i>
+                        </a>
+                    </div>
+                </div>
                 
-                <blockquote class="mt-8 max-w-2xl text-lg text-gray-300 italic" data-lang="en">
-                    <b>"Building tomorrow's digital world, one line of code at a time."</b> 
-                </blockquote>
-                <blockquote class="mt-8 max-w-2xl text-lg text-gray-300 italic" data-lang="ja">
-                    <b>「明日のデジタル世界を、一行のコードから築き上げる。」</b>
-                </blockquote>
+                <div class="home-img-wrapper reveal" style="transition-delay: 0.2s;">
+                    <div class="home__img-box">
+                        <div class="home__img-bg"></div>
+                        <img src="Pushan.jpg" alt="Pushan Paul" class="home__img">
+                    </div>
+                </div>
                 
-                 <div class="mt-6 text-gray-400 flex items-center">
-                    <i class="fas fa-map-marker-alt mr-2"></i>
-                    <span>Tokyo, Japan</span>
-                </div>
-                <a href="#contact" class="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105" data-lang="en">Get in Touch</a>
-                <a href="#contact" class="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105" data-lang="ja">お問い合わせ</a>
-            </section>
+            </div>
+        </section>
 
-            <!-- About Section -->
-            <section id="about" class="py-16 reveal">
-                 <div class="glass-card rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
-                    <img src="Pushan.jpg" alt="Pushan Paul" class="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover border-4 border-cyan-500/50 flex-shrink-0">
-                    <div class="text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4" data-lang="en">About Me</h2>
-                        <h2 class="text-3xl font-bold mb-4" data-lang="ja">自己紹介</h2>
-                        <p class="text-gray-300" data-lang="en">I'm a dedicated software engineer with a passion for crafting elegant solutions to complex problems. My expertise lies in front-end development with Angular and back-end systems with Java Spring Boot. I thrive in collaborative environments and am always excited to learn new technologies and grow as a developer.</p>
-                        <p class="text-gray-300" data-lang="ja">複雑な問題に対してエレガントなソリューションを作り上げることに情熱を注ぐ、献身的なソフトウェアエンジニアです。私の専門はAngularによるフロントエンド開発とJava Spring Bootによるバックエンドシステムです。協調的な環境で能力を発揮し、常に新しい技術を学び、開発者として成長することに意欲的です。</p>
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <span class="section__subtitle reveal" data-i18n="about-title">About Me</span>
+            <h2 class="section__title reveal" style="transition-delay: 0.1s;">My <span>Intro</span></h2>
+            
+            <div class="about-grid grid container">
+                <div class="about-data reveal" style="transition-delay: 0.2s;">
+                    <h3 class="about-hello" data-i18n="about-hello">Hello, I'm <span>Pushan Paul</span></h3>
+                    <p class="about-desc" data-i18n="about-bio-1">
+                        I am a dedicated software engineer with a deep passion for solving complex, high-stakes architectural problems. My core specialization lies in building fluid frontend interfaces using Angular, combined with constructing highly stable, secured backend pipelines using Java Spring Boot.
+                    </p>
+                    <p class="about-desc" data-i18n="about-bio-2">
+                        Based in Tokyo, I thrive in collaborative environments that demand high technical standards and rapid learning cycles. Whether building cross-platform architectures, writing robust systems, or lecturing future engineers, I commit fully to technical clean-code principles and dynamic user experiences.
+                    </p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <span class="stat-number" data-i18n="stat-exp-num">1+</span>
+                            <span class="stat-label" data-i18n="stat-exp-lbl">Years Exp in Japan</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" data-i18n="stat-proj-num">10+</span>
+                            <span class="stat-label" data-i18n="stat-proj-lbl">Projects Completed</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" data-i18n="stat-clients-num">100%</span>
+                            <span class="stat-label" data-i18n="stat-clients-lbl">Client Satisfaction</span>
+                        </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Skills Section -->
-            <section id="skills" class="py-16 reveal">
-                <h2 class="text-3xl font-bold text-center mb-6" data-lang="en">Core Technologies</h2>
-                <h2 class="text-3xl font-bold text-center mb-6" data-lang="ja">コア技術</h2>
-                <div class="flex justify-center gap-8 mb-16">
-                    <div class="glass-card rounded-xl p-6 text-center w-48">
-                        <i class="fab fa-angular fa-3x mb-3 text-cyan-400"></i>
-                        <p class="font-bold">Angular</p>
-                    </div>
-                    <div class="glass-card rounded-xl p-6 text-center w-48">
-                        <i class="fas fa-leaf fa-3x mb-3 text-cyan-400"></i>
-                        <p class="font-bold">Java Spring Boot</p>
-                    </div>
                 </div>
+            </div>
+        </section>
 
-                <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">Additional Skills</h2>
-                <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">その他のスキル</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-c fa-2x mb-2 text-cyan-400"></i><p>C</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-plus-minus fa-2x mb-2 text-cyan-400"></i><p>C++</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-python fa-2x mb-2 text-cyan-400"></i><p>Python</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-java fa-2x mb-2 text-cyan-400"></i><p>Java</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-swift fa-2x mb-2 text-cyan-400"></i><p>Swift</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-database fa-2x mb-2 text-cyan-400"></i><p>MySQL</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-android fa-2x mb-2 text-cyan-400"></i><p>Android SDK</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-laptop-code fa-2x mb-2 text-cyan-400"></i><p>ASP.NET</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fas fa-cubes fa-2x mb-2 text-cyan-400"></i><p>OpenGL</p></div>
-                    <div class="glass-card rounded-xl p-6 text-center"><i class="fab fa-git-alt fa-2x mb-2 text-cyan-400"></i><p>Git</p></div>
-                </div>
-            </section>
-
-            <!-- Experience Section -->
-            <section id="experience" class="py-16 reveal">
-                <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">My Journey</h2>
-                <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">私の歩み</h2>
-                <div class="max-w-3xl mx-auto relative">
-                    <!-- Vertical Line -->
-                    <div class="absolute left-4 md:left-1/2 w-0.5 h-full bg-cyan-900"></div>
-                    <!-- Timeline Items -->
-                    <div class="space-y-12">
-                        <div class="relative pl-12 md:pl-0 md:flex md:justify-end md:w-1/2 md:pr-12">
-                            <div class="absolute left-4 md:left-auto md:right-0 md:translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-briefcase"></i></div>
-                            <div class="glass-card p-6 rounded-lg">
-                                <p class="text-sm text-cyan-400">Apr 2025 - Present</p>
-                                <h3 class="font-bold" data-lang="en">Software Engineer · MASS Holdings Ltd.</h3>
-                                <h3 class="font-bold" data-lang="ja">ソフトウェアエンジニア · 株式会社MASSホールディングス</h3>
-                            </div>
+        <!-- Skills Section -->
+        <section class="skills section" id="skills">
+            <span class="section__subtitle reveal" data-i18n="skills-title">Skills & Expertise</span>
+            <h2 class="section__title reveal" style="transition-delay: 0.1s;">My <span>Abilities</span></h2>
+            
+            <div class="skills-container grid container reveal">
+                <!-- Core Tech Stack -->
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <i class="ri-stack-line"></i>
+                        <span data-i18n="skills-core">Core Architecture Stack</span>
+                    </h3>
+                    <div class="skills-grid grid">
+                        <div class="skill-card">
+                            <i class="ri-angularjs-line" style="color: #dd0031;"></i>
+                            <p>Angular</p>
                         </div>
-                        <div class="relative pl-12 md:pl-0 md:flex md:w-1/2 md:ml-auto md:pl-12">
-                             <div class="absolute left-4 md:left-0 md:-translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <div class="glass-card p-6 rounded-lg">
-                                <p class="text-sm text-cyan-400">Dec 2024 - March 2025</p>
-                                <h3 class="font-bold" data-lang="en">Lecturer in CSE · East Delta University</h3>
-                                <h3 class="font-bold" data-lang="ja">CSE講師 · イーストデルタ大学</h3>
-                            </div>
+                        <div class="skill-card">
+                            <i class="ri-leaf-line" style="color: #6db33f;"></i>
+                            <p>Spring Boot</p>
                         </div>
-                        <div class="relative pl-12 md:pl-0 md:flex md:w-1/2 md:ml-auto md:pl-12">
-                             <div class="absolute left-4 md:left-0 md:-translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <div class="glass-card p-6 rounded-lg">
-                                <p class="text-sm text-cyan-400">Jun 2024 - Dec 2025</p>
-                                <h3 class="font-bold" data-lang="en">Trainee · B-JET</h3>
-                                <h3 class="font-bold" data-lang="ja">研修生 · B-JET</h3>
-                            </div>
+                        <div class="skill-card">
+                            <i class="ri-braces-line" style="color: #f89880;"></i>
+                            <p>Java</p>
                         </div>
-                         <div class="relative pl-12 md:pl-0 md:flex md:justify-end md:w-1/2 md:pr-12">
-                            <div class="absolute left-4 md:left-auto md:right-0 md:translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="glass-card p-6 rounded-lg">
-                                <p class="text-sm text-cyan-400">2024</p>
-                                <h3 class="font-bold" data-lang="en">BSc. in CSE · Khulna University of Engineering & Technology</h3>
-                                <h3 class="font-bold" data-lang="ja">コンピューターサイエンスと工学の理学士 · クルナ工科大学</h3>
-                            </div>
+                        <div class="skill-card">
+                            <i class="ri-database-2-line" style="color: #00758f;"></i>
+                            <p>MySQL</p>
                         </div>
-                         <div class="relative pl-12 md:pl-0 md:flex md:w-1/2 md:ml-auto md:pl-12">
-                            <div class="absolute left-4 md:left-0 md:-translate-x-1/2 -top-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center ring-8 ring-black/50"><i class="fas fa-school"></i></div>
-                            <div class="glass-card p-6 rounded-lg">
-                                <p class="text-sm text-cyan-400">2018</p>
-                                <h3 class="font-bold" data-lang="en">H.S.C. Science · Notre Dame College</h3>
-                                <h3 class="font-bold" data-lang="ja">高等中等教育証明書 · ノートルダム・カレッジ</h3>
-                            </div>
+                        <div class="skill-card">
+                            <i class="ri-git-branch-line" style="color: #f05032;"></i>
+                            <p>Git / GitHub</p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="py-16 reveal">
-                 <h2 class="text-3xl font-bold text-center mb-12" data-lang="en">Featured Projects</h2>
-                 <h2 class="text-3xl font-bold text-center mb-12" data-lang="ja">注目のプロジェクト</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="https://github.com/pushanweb/City-Quest-Game" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">City Quest Game</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">シティクエストゲーム</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">A modern 3D game built with OpenGL 3.3.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">OpenGL 3.3で構築されたモダンな3Dゲーム。</p>
-                    </a>
-                     <a href="https://github.com/pushanweb/Cap-the-cells" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">AI Game Engine</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">AIゲームエンジン</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">An AI game using Min-Max and Alpha-Beta Pruning algorithms.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">ミニマックス法とアルファベータ法を用いたAIゲーム。</p>
-                    </a>
-                    <a href="https://github.com/pushanweb/CardiacRecorder" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Android Cardiac Recorder</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Android心臓記録装置</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">An Android app for recording and monitoring cardiac activity.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">心臓活動を記録・監視するためのAndroidアプリ。</p>
-                    </a>
-                    <a href="https://github.com/pushanweb/RFID-and-Keypad-Based-Door-Lock-Using-Arduino" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Arduino RFID Door Lock</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Arduino RFIDドアロック</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">A secure door lock system using RFID and a keypad with Arduino.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">Arduinoを使用したRFIDとキーパッドによる安全なドアロックシステム。</p>
-                    </a>
-                    <a href="https://github.com/pushanweb/UniversityDatabase" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">University Database System</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">大学データベースシステム</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">A database management system for university records.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">大学の記録を管理するためのデータベース管理システム。</p>
-                    </a>
-                    <a href="https://github.com/pushanweb/Supermarket-Management" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">ASP.NET Supermarket System</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">ASP.NETスーパーマーケットシステム</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">A management system for supermarkets built with ASP.NET.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">ASP.NETで構築されたスーパーマーケット管理システム。</p>
-                    </a>
-                    <a href="https://github.com/pushanweb/MyVehiclesApp" target="_blank" class="glass-card rounded-xl p-6">
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="en">Android Vehicle Tracking App</h3>
-                        <h3 class="font-bold text-xl mb-2 text-cyan-400" data-lang="ja">Android車両追跡アプリ</h3>
-                        <p class="text-sm text-gray-300" data-lang="en">A vehicle tracking application for Android devices.</p>
-                        <p class="text-sm text-gray-300" data-lang="ja">Androidデバイス用の車両追跡アプリケーション。</p>
-                    </a>
-                 </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="py-16 text-center reveal">
-                <h2 class="text-3xl font-bold mb-4" data-lang="en">Let's Build Together</h2>
-                <h2 class="text-3xl font-bold mb-4" data-lang="ja">一緒に作りましょう</h2>
-                <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-lang="en">Open to new projects and collaborations. Let's connect!</p>
-                <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-lang="ja">新しいプロジェクトやコラボレーションを歓迎します。繋がりましょう！</p>
-                <a href="mailto:pushanweb@gmail.com" class="inline-block bg-cyan-500 text-black font-bold py-3 px-8 rounded-full hover:bg-cyan-400 transition-all duration-300 transform hover:scale-105">
-                    pushanweb@gmail.com
-                </a>
-                 <div class="mt-12 flex justify-center space-x-6">
-                    <a href="https://github.com/pushanweb" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/pushanweb/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=100066383753059" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+                
+                <!-- Additional Skills Grid -->
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <i class="ri-tools-line"></i>
+                        <span data-i18n="skills-secondary">Technical Versatility</span>
+                    </h3>
+                    <div class="skills-grid grid">
+                        <div class="skill-card">
+                            <i class="ri-code-box-line" style="color: #044f88;"></i>
+                            <p>C Language</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-code-line" style="color: #00599c;"></i>
+                            <p>C++</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-terminal-box-line" style="color: #3776ab;"></i>
+                            <p>Python</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-apple-line" style="color: #f05138;"></i>
+                            <p>Swift</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-android-line" style="color: #3ddc84;"></i>
+                            <p>Android SDK</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-microsoft-line" style="color: #178600;"></i>
+                            <p>ASP.NET</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="ri-grid-line" style="color: #e51a2b;"></i>
+                            <p>OpenGL 3D</p>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </main>
-    </div>
+            </div>
+        </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Language Toggle
-            const langToggle = document.getElementById('language-toggle');
-            const elements = document.querySelectorAll('[data-lang]');
-            const html = document.documentElement;
+        <!-- Experience Journey Section -->
+        <section class="experience section" id="experience">
+            <span class="section__subtitle reveal" data-i18n="journey-title">My Journey</span>
+            <h2 class="section__title reveal" style="transition-delay: 0.1s;">My <span>Career</span></h2>
+            
+            <div class="timeline container reveal">
+                
+                <!-- MASS Holdings Ltd -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time" data-i18n="journey-exp-1-time">Apr 2025 - Present</span>
+                        <h3 class="timeline-title" data-i18n="journey-exp-1-role">Software Engineer</h3>
+                        <h4 class="timeline-company" data-i18n="journey-exp-1-comp">MASS Holdings Ltd.</h4>
+                        <p class="timeline-desc" data-i18n="journey-exp-1-desc">
+                            Designing enterprise-grade web applications utilizing Angular frontend and robust Java microservices in Tokyo, focusing on code stability, clean APIs, and optimized client delivery.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- East Delta University -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time" data-i18n="journey-exp-2-time">Dec 2024 - Mar 2025</span>
+                        <h3 class="timeline-title" data-i18n="journey-exp-2-role">Lecturer in CSE</h3>
+                        <h4 class="timeline-company" data-i18n="journey-exp-2-comp">East Delta University</h4>
+                        <p class="timeline-desc" data-i18n="journey-exp-2-desc">
+                            Instructed undergraduate classes in core Computer Science & Engineering, mentoring students in algorithms, data structures, and object-oriented architectures.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- B-JET -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time" data-i18n="journey-exp-3-time">Jun 2024 - Dec 2024</span>
+                        <h3 class="timeline-title" data-i18n="journey-exp-3-role">Trainee</h3>
+                        <h4 class="timeline-company" data-i18n="journey-exp-3-comp">B-JET Program</h4>
+                        <p class="timeline-desc" data-i18n="journey-exp-3-desc">
+                            Intensive preparation program focused on professional Japanese business culture, language competence, and collaborative development frameworks.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- KUET -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time" data-i18n="journey-exp-4-time">Graduated 2024</span>
+                        <h3 class="timeline-title" data-i18n="journey-exp-4-role">BSc. in Computer Science & Engineering</h3>
+                        <h4 class="timeline-company" data-i18n="journey-exp-4-comp">Khulna University of Engineering & Technology (KUET)</h4>
+                        <p class="timeline-desc" data-i18n="journey-exp-4-desc">
+                            Completed a comprehensive curriculum centered on systems programming, algorithmic foundations, database design, and software engineering methodologies.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Notre Dame College -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time" data-i18n="journey-exp-5-time">Completed 2018</span>
+                        <h3 class="timeline-title" data-i18n="journey-exp-5-role">H.S.C. Science</h3>
+                        <h4 class="timeline-company" data-i18n="journey-exp-5-comp">Notre Dame College</h4>
+                        <p class="timeline-desc" data-i18n="journey-exp-5-desc">
+                            Elite scientific high school program specializing in advanced mathematics, physics, and software fundamentals.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
 
-            const setLanguage = (lang) => {
-                html.lang = lang;
-                elements.forEach(el => {
-                    let displayStyle = 'inline-block';
-                    if (['P', 'H1', 'H2', 'H3', 'BLOCKQUOTE'].includes(el.tagName)) {
-                        displayStyle = 'block';
-                    }
-                    el.style.display = el.dataset.lang === lang ? displayStyle : 'none';
-                });
-            };
+        <!-- Projects Showcase Section -->
+        <section class="projects section" id="projects">
+            <span class="section__subtitle reveal" data-i18n="projects-title">Featured Projects</span>
+            <h2 class="section__title reveal" style="transition-delay: 0.1s;">My <span>Jobs</span></h2>
+            
+            <!-- Category Filtering Tabs -->
+            <div class="project-filters container reveal">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter-all">All Solutions</button>
+                <button class="filter-btn" data-filter="games" data-i18n="filter-games">Games & AI</button>
+                <button class="filter-btn" data-filter="mobile" data-i18n="filter-mobile">Mobile SDK</button>
+                <button class="filter-btn" data-filter="systems" data-i18n="filter-systems">Systems / Web</button>
+            </div>
+            
+            <div class="projects-grid grid container reveal" style="transition-delay: 0.2s;">
+                
+                <!-- Project 1: City Quest 3D Game -->
+                <div class="project-card-wrapper" data-category="games">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-gamepad-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-quest-title">City Quest 3D Game</h3>
+                        <p class="project-desc" data-i18n="proj-quest-desc">
+                            A fully immersive, responsive 3D quest navigation environment built natively with OpenGL 3.3 and C++ framework.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-quest-tag-1">OpenGL 3.3</span>
+                            <span class="project-tag" data-i18n="proj-quest-tag-2">C++</span>
+                            <span class="project-tag" data-i18n="proj-quest-tag-3">Game Engine</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/City-Quest-Game" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Adversarial Game Engine -->
+                <div class="project-card-wrapper" data-category="games">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-brain-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-ai-title">Adversarial Game Engine</h3>
+                        <p class="project-desc" data-i18n="proj-ai-desc">
+                            An intelligent game engine leveraging highly optimized Min-Max and Alpha-Beta Pruning algorithms for strategic decision trees.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-ai-tag-1">AI Engine</span>
+                            <span class="project-tag" data-i18n="proj-ai-tag-2">Algorithms</span>
+                            <span class="project-tag" data-i18n="proj-ai-tag-3">Data Trees</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/Cap-the-cells" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Android Cardiac Recorder -->
+                <div class="project-card-wrapper" data-category="mobile">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-heart-pulse-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-cardiac-title">Android Cardiac Recorder</h3>
+                        <p class="project-desc" data-i18n="proj-cardiac-desc">
+                            A life-monitoring mobile medical utility designed to record, chart, and alert patients on cardiac activity variations.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-cardiac-tag-1">Android SDK</span>
+                            <span class="project-tag" data-i18n="proj-cardiac-tag-2">Java Mobile</span>
+                            <span class="project-tag" data-i18n="proj-cardiac-tag-3">Health Tech</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/CardiacRecorder" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4: RFID Secure Door Lock -->
+                <div class="project-card-wrapper" data-category="systems">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-key-2-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-arduino-title">RFID Secure Door Lock</h3>
+                        <p class="project-desc" data-i18n="proj-arduino-desc">
+                            A hardware-integrated safety lock featuring automated keypad inputs and RFID card scanners programmed via Arduino.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-arduino-tag-1">Arduino C</span>
+                            <span class="project-tag" data-i18n="proj-arduino-tag-2">IoT Security</span>
+                            <span class="project-tag" data-i18n="proj-arduino-tag-3">Hardware</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/RFID-and-Keypad-Based-Door-Lock-Using-Arduino" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5: University Database System -->
+                <div class="project-card-wrapper" data-category="systems">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-node-tree"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-db-title">University Database System</h3>
+                        <p class="project-desc" data-i18n="proj-db-desc">
+                            An optimized relational database model organizing academic records, course structures, and secure query access.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-db-tag-1">MySQL</span>
+                            <span class="project-tag" data-i18n="proj-db-tag-2">Relational DB</span>
+                            <span class="project-tag" data-i18n="proj-db-tag-3">SQL API</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/UniversityDatabase" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6: ASP.NET Supermarket Inventory System -->
+                <div class="project-card-wrapper" data-category="systems">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-shopping-bag-3-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-super-title">ASP.NET Supermarket Hub</h3>
+                        <p class="project-desc" data-i18n="proj-super-desc">
+                            An enterprise inventory controller and point-of-sale database system tailored for supermarket networks.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-super-tag-1">ASP.NET</span>
+                            <span class="project-tag" data-i18n="proj-super-tag-2">C# Core</span>
+                            <span class="project-tag" data-i18n="proj-super-tag-3">Enterprise ERP</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/Supermarket-Management" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 7: Android Vehicle Tracker -->
+                <div class="project-card-wrapper" data-category="mobile">
+                    <div class="project-card">
+                        <div class="project-icon-wrapper">
+                            <i class="ri-map-pin-5-line"></i>
+                        </div>
+                        <h3 class="project-title" data-i18n="proj-vehicle-title">Android Vehicle Tracker</h3>
+                        <p class="project-desc" data-i18n="proj-vehicle-desc">
+                            A coordinate-mapping location tracker built for fleet operations, recording routes in real-time.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag" data-i18n="proj-vehicle-tag-1">Android SDK</span>
+                            <span class="project-tag" data-i18n="proj-vehicle-tag-2">Google Maps API</span>
+                            <span class="project-tag" data-i18n="proj-vehicle-tag-3">GPS Tracking</span>
+                        </div>
+                        <a href="https://github.com/pushanweb/MyVehiclesApp" target="_blank" class="project-link">
+                            <span data-i18n="proj-source-code">Source Code</span> <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
 
-            langToggle.addEventListener('change', (event) => {
-                setLanguage(event.target.checked ? 'ja' : 'en');
-            });
-            setLanguage('en');
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="contact-container container reveal">
+                <span class="section__subtitle" data-i18n="contact-title">Let's Build Together</span>
+                <h2 class="section__title" style="margin-bottom: 2rem;">Get In <span>Touch</span></h2>
+                
+                <div class="contact-card">
+                    <span class="contact-subtitle" data-i18n="contact-subtitle">Partner For Success</span>
+                    <h3 data-i18n="contact-card-title">Have a project or opportunity?</h3>
+                    <p class="contact-desc" data-i18n="contact-desc">
+                        I am open to corporate contracts, consultant collaborations, and international development challenges. Let's engineer your solution.
+                    </p>
+                    
+                    <div class="email-copy-box">
+                        <span class="email-text">pushanweb@gmail.com</span>
+                        <button id="copy-email-btn" class="email-copy-btn">
+                            <i class="ri-file-copy-line"></i>
+                            <span data-i18n="copy-email">Copy Email</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Direct Social Networking Hub -->
+                    <div class="social-links">
+                        <a href="https://github.com/pushanweb" target="_blank" class="home-social-icon" aria-label="GitHub">
+                            <i class="ri-github-line"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pushanweb/" target="_blank" class="home-social-icon" aria-label="LinkedIn">
+                            <i class="ri-linkedin-box-line"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100066383753059" target="_blank" class="home-social-icon" aria-label="Facebook">
+                            <i class="ri-facebook-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            // Scroll Animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
+    </main>
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-copy">
+                &copy; 2026 <span>Pushan Paul</span>. All rights reserved.
+            </div>
+            
+            <p class="footer-meta">
+                <span data-i18n="footer-meta">Designed with</span> <i class="ri-heart-fill"></i> in Tokyo
+            </p>
+        </div>
+    </footer>
+
 </body>
 </html>

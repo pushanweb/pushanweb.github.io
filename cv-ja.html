@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パルプション - 履歴書・職務経歴書</title>
+    <!-- Font Awesome Icons -->
+    <link class="no-print" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* CSS resets & Japanese Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+            padding: 3rem 1rem;
+        }
+
+        /* Printable Sheet Layout */
+        .sheet {
+            max-width: 820px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            padding: 3.5rem;
+            position: relative;
+        }
+
+        /* Print Header bar */
+        .print-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #374151;
+        }
+        .print-header-title {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .print-btn {
+            background: linear-gradient(135deg, #00cc88, #009966);
+            color: #ffffff;
+            border: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 204, 136, 0.3);
+            transition: all 0.2s;
+        }
+        .print-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(0, 204, 136, 0.5);
+        }
+
+        /* Header Details */
+        .header-section {
+            border-bottom: 2px solid #111827;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header-left {
+            flex-grow: 1;
+        }
+        .name-katakana {
+            font-size: 0.9rem;
+            color: #4b5563;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+        .name {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .title-tag {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #00cc88;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #4b5563;
+            min-width: 250px;
+        }
+        .contact-row {
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+        .contact-row a {
+            color: #00cc88;
+            text-decoration: none;
+        }
+        .contact-row i {
+            color: #00cc88;
+            width: 14px;
+        }
+
+        /* Section Layout */
+        .cv-section {
+            margin-bottom: 2.5rem;
+        }
+        .section-heading {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111827;
+            border-bottom: 2px solid #111827;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-heading i {
+            color: #00cc88;
+        }
+
+        /* Tabular Grid for History */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .history-table th, .history-table td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        .history-table th {
+            background-color: #f9fafb;
+            font-weight: 700;
+            color: #111827;
+        }
+        .history-table td.date-col {
+            width: 160px;
+            font-weight: 600;
+            color: #4b5563;
+            text-align: center;
+        }
+        .history-title {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+        .history-desc {
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        /* Skills table */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .skill-group-title {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid #00cc88;
+            padding-left: 0.5rem;
+        }
+        .skill-list {
+            color: #4b5563;
+        }
+
+        /* Self PR block */
+        .pr-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        .pr-card-title {
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pr-card-title i {
+            color: #00cc88;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+        .project-title {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.2rem;
+        }
+        .project-tech {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #00cc88;
+            margin-bottom: 0.3rem;
+        }
+        .project-desc {
+            color: #4b5563;
+            font-size: 0.85rem;
+        }
+
+        /* --- PRINT OVERRIDES (Critical) --- */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+            .sheet {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .section-heading i, .pr-card-title i {
+                display: none;
+            }
+            .section-heading {
+                border-bottom-color: #000000;
+            }
+            .header-section {
+                border-bottom-color: #000000;
+            }
+            .title-tag, .project-tech, .contact-row i, .contact-row a, .history-table th {
+                color: #000000 !important;
+            }
+            .history-table th {
+                background-color: #ffffff !important;
+            }
+            .pr-card {
+                background-color: #ffffff !important;
+                border: 1px solid #000000 !important;
+            }
+            a {
+                text-decoration: none;
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Printable Header bar (Hidden on Print) -->
+    <div class="print-header no-print">
+        <span class="print-header-title">パルプション - 履歴書・職務経歴書</span>
+        <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> 印刷する / PDF保存
+        </button>
+    </div>
+
+    <!-- Main printable Sheet container -->
+    <div class="sheet">
+        
+        <!-- Header Details -->
+        <header class="header-section">
+            <div class="header-left">
+                <div class="name-katakana">パルプション</div>
+                <h1 class="name">Pushan Paul</h1>
+                <div class="title-tag">ソフトウェアエンジニア (フルスタック)</div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>日本、東京都</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:pushanweb@gmail.com">pushanweb@gmail.com</a>
+                </div>
+                <div class="contact-row">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/pushanweb" target="_blank">github.com/pushanweb</a>
+                </div>
+                <div class="contact-row">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/pushanweb/" target="_blank">linkedin.com/in/pushanweb</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Summary -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-user"></i> 職務要約</h2>
+            <p style="font-size: 0.9rem; color: #374151; text-align: justify;">
+                東京を拠点に活動する、システム開発に強い情熱を持ったフルスタックのソフトウェアエンジニア。**Angular**を用いた直感的で拡張性の高いフロントエンドの構築と、**Java Spring Boot**を主軸とした安定・堅牢でクリーンなバックエンドAPIおよびマイクロサービスの開発において豊富な設計実績を有しています。大学での講師経験（CSE講師）もあり、コンピュータサイエンスのアルゴリズムやデータ構造に関する深い学術的知識と問題解決能力を備えています。B-JETプログラムを修了し、日本のビジネスマナーやチーム開発スタイルへの適応力が高く、日英バイリンガルとして多国籍なチームやクライアントに高品質なソリューションを提供します。
+            </p>
+        </section>
+
+        <!-- Education & Work History Table -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-history"></i> 学歴・職歴</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th class="date-col">年月</th>
+                        <th>学歴・職歴の概要</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Notre Dame -->
+                    <tr>
+                        <td class="date-col">2018年3月</td>
+                        <td>
+                            <div class="history-title">ノートルダム・カレッジ 卒業</div>
+                            <div class="history-desc">高等中等教育証明書 (理系専攻) 修了</div>
+                        </td>
+                    </tr>
+                    <!-- KUET -->
+                    <tr>
+                        <td class="date-col">2024年3月</td>
+                        <td>
+                            <div class="history-title">クルナ工科大学 (KUET) 卒業</div>
+                            <div class="history-desc">コンピュータサイエンス・工学理学士号 (BSc in CSE) 取得</div>
+                        </td>
+                    </tr>
+                    <!-- B-JET -->
+                    <tr>
+                        <td class="date-col">2024年6月 ～ 12月</td>
+                        <td>
+                            <div class="history-title">B-JET プログラム 研修修了</div>
+                            <div class="history-desc">日本のビジネス商習慣、IT用語、および業務コミュニケーション能力に特化した集中研修を修了。</div>
+                        </td>
+                    </tr>
+                    <!-- EDU -->
+                    <tr>
+                        <td class="date-col">2024年12月 ～ 2025年3月</td>
+                        <td>
+                            <div class="history-title">イーストデルタ大学 コンピュータサイエンス学科 講師</div>
+                            <div class="history-desc">アルゴリズム、データ構造、オブジェクト指向プログラミングの講義を担当し、卒業研究開発プロジェクトを指導。</div>
+                        </td>
+                    </tr>
+                    <!-- MASS Holdings -->
+                    <tr>
+                        <td class="date-col">2025年4月 ～ 現在</td>
+                        <td>
+                            <div class="history-title">株式会社MASSホールディングス 在籍</div>
+                            <div class="history-desc">フルスタックソフトウェアエンジニアとして企業向け大規模Webアプリケーションの設計・開発に従事。AngularフロントエンドおよびJava Spring BootによるAPI構築を担当。</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Technical Competencies -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-tools"></i> 技術スタック</h2>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-group-title">メインスタック</div>
+                    <div class="skill-list">Angular, Spring Boot, Java, TypeScript, JavaScript (ES6+), MySQL, Relational Database, Git / GitHub</div>
+                </div>
+                <div>
+                    <div class="skill-group-title">その他言語・応用SDK</div>
+                    <div class="skill-list">C, C++, Python, Swift, Android SDK, ASP.NET (C#), OpenGL 3Dグラフィック</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Projects -->
+        <section class="cv-section">
+            <h2 class="section-heading"><i class="fas fa-laptop-code"></i> 主な開発実績</h2>
+            
+            <div class="project-item">
+                <div class="project-title">シティクエスト3D探索ゲーム (OpenGL 3.3, C++)</div>
+                <div class="project-tech">使用技術: C++, OpenGL 3.3, 3Dグラフィックス</div>
+                <div class="project-desc">OpenGL 3.3を用いてカメラレンダリング、ライティングバッファ、モデルマッピングをネイティブで構築した3D探索シミュレーションゲーム。</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">対戦型AIゲーム意思決定エンジン (Java / Python)</div>
+                <div class="project-tech">使用技術: アルゴリズム設計, Min-Max, Alpha-Beta木探索</div>
+                <div class="project-desc">ミニマックス法とアルファベータ枝刈りアルゴリズムを最適化し、ゲームの意思決定パターンをリアルタイムでシミュレーションするAIゲーム木探索モデル。</div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">Android心臓記録・監視アプリ (Android SDK, Java)</div>
+                <div class="project-tech">使用技術: Java Mobile, Android SDK, データ管理</div>
+                <div class="project-desc">患者の心活動データを記録し、視覚的な統計グラフを描写し、活動の異常値を自動的に通知・警告するヘルスケア監視アプリケーション。</div>
+            </div>
+        </section>
+
+        <!-- Self PR -->
+        <section class="cv-section" style="margin-bottom: 0;">
+            <h2 class="section-heading"><i class="fas fa-star"></i> 自己PR</h2>
+            
+            <div class="pr-card">
+                <div class="pr-card-title">
+                    <i class="fas fa-layer-group"></i> 1. 実践的で強固なフルスタック開発能力
+                </div>
+                <p>
+                    Angularによる高品質でモダンなSPAフロントエンド開発から、Java Spring Bootによるセキュアで可用性の高いAPI・サーバー構築まで、一貫して手掛けることができます。フロントとバックエンドの境界を深く理解しているため、クリーンで結合度の低いシステム連携設計が強みです。
+                </p>
+            </div>
+
+            <div class="pr-card">
+                <div class="pr-card-title">
+                    <i class="fas fa-lightbulb"></i> 2. 卓越した論理的思考力と問題解決への情熱
+                </div>
+                <p>
+                    大学のCSE講師としてアルゴリズムやデータ構造を教えていた背景から、複雑な仕様や予期せぬ不具合に対しても、論理的な裏付けを持って迅速にアプローチできます。新しい技術トレンドへの学習意欲も旺盛で、困難な技術課題にも楽しみながら主体的に挑戦します。
+                </p>
+            </div>
+
+            <div class="pr-card" style="margin-bottom: 0;">
+                <div class="pr-card-title">
+                    <i class="fas fa-globe"></i> 3. 日本企業への深い適応力とグローバルな協調性
+                </div>
+                <p>
+                    B-JETプログラムで学んだ日本のビジネス習慣や、現在日本のMASSホールディングスで在籍している経験から、日本のチーム開発で求められる「報連相」や品質へのこだわりを深く体現できます。日英バイリンガルとして、幅広いステークホルダーとスムーズな連携が可能です。
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
