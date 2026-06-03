@@ -671,7 +671,7 @@ function initScrollReveal() {
     const sections = document.querySelectorAll('section');
 
     function checkReveals() {
-        const triggerBottom = window.innerHeight * 0.85;
+        const triggerBottom = window.innerHeight - 20;
 
         // Reveal elements on scroll
         reveals.forEach(el => {
@@ -707,6 +707,8 @@ function initScrollReveal() {
     }
 
     window.addEventListener('scroll', checkReveals);
+    window.addEventListener('resize', checkReveals);
+    window.addEventListener('load', checkReveals);
     // Initial run
     checkReveals();
 }
